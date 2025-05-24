@@ -33,7 +33,7 @@ public class UserJpaEntity {
   @Column(name = "last_login", nullable = false)
   private LocalDateTime lastLoginAt;
 
-  //public UserJpaEntity(){}
+  public UserJpaEntity(){}
 
   public UserJpaEntity(
       UUID id, 

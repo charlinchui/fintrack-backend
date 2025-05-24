@@ -1,34 +1,49 @@
-spring:
-  profiles:
-    active: dev
+# spring:
+#   profiles:
+#     active: dev
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: dev
+#   config:
+#     activate:
+#       on-profile: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/devdb
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/fintrack_dev
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 server:
   port: 8080
-
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-  datasource:
-    url: ${DB_INSTANCE}
-    username: ${DB_USER}
-    password: ${DB_PASS}
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: test
+#   datasource:
+#     url: jcdb:h2:mem:testdb
+#     driver-class-name: org.h2.Driver
+#   jpa:
+#     hibernate:
+#       ddl-auto: create-drop
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: prod
+#   datasource:
+#     url: ${DB_INSTANCE}
+#     username: ${DB_USER}
+#     password: ${DB_PASS}
 
